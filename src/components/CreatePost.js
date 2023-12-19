@@ -17,7 +17,8 @@ const CreatePost = (props) => {
         props.addArticle({
             id:Date.now(),
             title,
-            content
+            content,
+            like:0
         })
     }
     return (
