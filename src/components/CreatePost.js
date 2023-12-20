@@ -18,7 +18,8 @@ const CreatePost = (props) => {
             id:Date.now(),
             title,
             content,
-            like:0
+            like:0,
+            dislike:0
         })
     }
     return (

@@ -1,11 +1,12 @@
-import { ADD_ARTICLE, ADD_LIKE, DELETE_ARTICLE, REMOVE_LIKE } from "../Constants/actions-types"
+import { ADD_ARTICLE, ADD_DISLIKE, ADD_LIKE, DELETE_ARTICLE } from "../Constants/actions-types"
 
 const initialState = {
     posts: [{
         id: 1,
         title: 'title 1',
         content: 'description',
-        like: 0
+        like: 0,
+        dislike:0
     }]
 }
 
@@ -28,12 +29,12 @@ const rootReducer = (state = initialState, action) => {
                         : post
                 )
             };
-            case REMOVE_LIKE:
+            case ADD_DISLIKE:
     return {
         ...state,
         posts: state.posts.map((post) =>
             post.id === action.payload
-                ? { ...post, like: post.like - 1 }
+                ? { ...post, dislike: post.dislike + 1 }
                 : post
         )
     };

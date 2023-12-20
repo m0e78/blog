@@ -1,4 +1,4 @@
-import { ADD_ARTICLE, ADD_LIKE, DELETE_ARTICLE, REMOVE_LIKE } from "../Constants/actions-types";
+import { ADD_ARTICLE, ADD_LIKE, DELETE_ARTICLE, ADD_DISLIKE } from "../Constants/actions-types";
 export const addPost = newPost => {
     return {
         type: ADD_ARTICLE,
@@ -18,9 +18,9 @@ export const addLike=id=>{
     }
     
 }
-export const removeLike=id=>{
+export const addDislike=id=>{
     return{
-        type:REMOVE_LIKE,
+        type:ADD_DISLIKE,
         payload:id
     }
     
