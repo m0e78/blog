@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Button from 'react-bootstrap/Button';
 import './PostList.css'
-import { addDislike, addLike, deletePost } from '../Js/Actions/actions';
+import { addDislike, addLike, deletePost } from '../../Js/Actions/actions';
 
 
 /* const mapStateToProps = state => {

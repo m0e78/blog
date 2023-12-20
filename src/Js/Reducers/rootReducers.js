@@ -1,4 +1,4 @@
-import { ADD_ARTICLE, ADD_DISLIKE, ADD_LIKE, DELETE_ARTICLE } from "../Constants/actions-types"
+import { ADD_ARTICLE, ADD_DISLIKE, ADD_LIKE, ADD_TODO, DELETE_ARTICLE, DELETE_TODO } from "../Constants/actions-types"
 
 const initialState = {
     posts: [{
@@ -7,6 +7,11 @@ const initialState = {
         content: 'description',
         like: 0,
         dislike:0
+    }],
+    todos:[{
+        id:1,
+        description:'exemple',
+        isDone:false
     }]
 }
 
@@ -37,7 +42,15 @@ const rootReducer = (state = initialState, action) => {
                 ? { ...post, dislike: post.dislike + 1 }
                 : post
         )
-    };
+    }
+    case ADD_TODO:
+        return {
+            todos: [...state.todos, action.payload]
+        }
+    case DELETE_TODO:
+        return {
+            todos: state.todos.filter(ele => action.payload !== ele.id)
+        }
         default:
             return state
     }

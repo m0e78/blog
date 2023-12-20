@@ -1,14 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
-import CreatePost from './components/CreatePost';
-import PostList from './components/PostList';
+import CreatePost from './components/posts/CreatePost';
+import PostList from './components/posts/PostList';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router ,Route , Routes } from 'react-router-dom';
+import NavBar from './components/navbar/Navbar';
+import Post from './components/posts/Post';
+import Home from './components/dashboard/Home';
+import CreateTodo from './components/todolist/CreateTodo';
 function App() {
 
   return (
     <div className="App ">
-      <CreatePost />
-      <PostList  />
+     <Router>
+      <NavBar/>
+
+       <Routes>
+            
+            <Route path="/" element={<Home />} />
+            <Route path="/posts" element={<Post />}>
+              <Route index element={<PostList />} />
+              <Route path="createpost" element={<CreatePost />} />
+              <Route path="postlist" element={<PostList />} />
+           </Route>
+            {/* <Route path="/todo" element={<ToDo />}>
+              <Route index element={<AddToDo />} />
+              <Route path="addToDo" element={<AddToDo />} />
+              <Route index path="todoList" element={<ToDoList todos={todos} />} />
+           </Route> */}
+           <Route path="/todos" element={<CreateTodo />}></Route>
+          </Routes>
+
+      </Router>
+      {/* <CreatePost />
+      <PostList /> */}
     </div>
   );
 }

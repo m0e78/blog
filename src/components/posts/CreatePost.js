@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { addPost } from '../Js/Actions/actions';
+import { addPost } from '../../Js/Actions/actions';
 import { connect } from 'react-redux';
 
-const mapDispatchToProps=dispatch=>{
-    return{
-        addArticle:post=> dispatch(addPost(post))
+const mapDispatchToProps = dispatch => {
+    return {
+        addArticle: post => dispatch(addPost(post))
     }
 }
 const CreatePost = (props) => {
@@ -15,11 +15,11 @@ const CreatePost = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         props.addArticle({
-            id:Date.now(),
+            id: Date.now(),
             title,
             content,
-            like:0,
-            dislike:0
+            like: 0,
+            dislike: 0
         })
     }
     return (
@@ -40,4 +40,4 @@ const CreatePost = (props) => {
     );
 }
 
-export default connect(null,mapDispatchToProps)(CreatePost)
+export default connect(null, mapDispatchToProps)(CreatePost)
