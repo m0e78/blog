@@ -23,7 +23,7 @@ const CreateTodo = (props) => {
         <Form onSubmit={handleSubmit} className='col-4 mx-auto'>
             
             <Form.Group className="mb-3 " >
-                <Form.Label>TODO</Form.Label>
+                <Form.Label>Add a Todo</Form.Label>
                 <Form.Control as="textarea" rows={3}
                     onChange={e => setDescription(e.target.value)} />
             </Form.Group>
