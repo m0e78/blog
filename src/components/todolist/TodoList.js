@@ -47,7 +47,6 @@ const TodoList = () => {
               style={{ marginRight: 10 }}
               variant="danger"
               onClick={() => dispatch(deleteTodo(todo.id))}>
-              {" "}
               Delete
             </Button>
 
