@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { addTodo } from '../../Js/Actions/actions';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -10,6 +11,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 const CreateTodo = (props) => {
+    const navigate=useNavigate()
     const [description, setDescription] = useState('')
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -18,6 +20,7 @@ const CreateTodo = (props) => {
             description,
             isDone:false
         })
+        navigate('/todos/todolist')
     }
     return (
         <Form onSubmit={handleSubmit} className='col-4 mx-auto'>
@@ -27,7 +30,7 @@ const CreateTodo = (props) => {
                 <Form.Control as="textarea" rows={3}
                     onChange={e => setDescription(e.target.value)} />
             </Form.Group>
-            <Button variant="primary" type="sumbit"> Add Todo</Button>
+            <Button variant="primary" type="submit" > Add Todo</Button>
 
         </Form>
     );

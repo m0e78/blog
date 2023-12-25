@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { addPost } from '../../Js/Actions/actions';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -10,6 +11,8 @@ const mapDispatchToProps = dispatch => {
     }
 }
 const CreatePost = (props) => {
+    const navigate=useNavigate()
+
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const handleSubmit = (e) => {
@@ -21,6 +24,7 @@ const CreatePost = (props) => {
             like: 0,
             dislike: 0
         })
+        navigate('/posts/postlist')
     }
     return (
         <Form onSubmit={handleSubmit} className='col-4 mx-auto'>
@@ -34,7 +38,7 @@ const CreatePost = (props) => {
                 <Form.Control as="textarea" rows={3}
                     onChange={e => setContent(e.target.value)} />
             </Form.Group>
-            <Button variant="primary" type="sumbit"> Add Article</Button>
+            <Button variant="primary" type="submit"> Add Article</Button>
 
         </Form>
     );

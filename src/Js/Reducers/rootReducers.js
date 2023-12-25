@@ -1,4 +1,4 @@
-import { ADD_ARTICLE, ADD_DISLIKE, ADD_LIKE, ADD_TODO, DELETE_ARTICLE, DELETE_TODO, DONE_TODO } from "../Constants/actions-types"
+import { ADD_ARTICLE, ADD_DISLIKE, ADD_LIKE, ADD_TODO, DELETE_ARTICLE, DELETE_TODO, DONE_TODO, EDIT_TODO } from "../Constants/actions-types"
 
 const initialState = {
     posts: [{
@@ -6,12 +6,12 @@ const initialState = {
         title: 'Title',
         content: 'Article Description',
         like: 0,
-        dislike:0
+        dislike: 0
     }],
-    todos:[{
-        id:1,
-        description:'Todo Example',
-        isDone:false
+    todos: [{
+        id: 1,
+        description: 'Todo Example',
+        isDone: false
     }]
 }
 
@@ -34,36 +34,45 @@ const rootReducer = (state = initialState, action) => {
                         : post
                 )
             };
-            case ADD_DISLIKE:
-    return {
-        ...state,
-        posts: state.posts.map((post) =>
-            post.id === action.payload
-                ? { ...post, dislike: post.dislike + 1 }
-                : post
-        )
-    }
-    case ADD_TODO:
-        return {
-            todos: [...state.todos, action.payload]
-        }
-    case DELETE_TODO:
-        return {
-            todos: state.todos.filter(ele => action.payload !== ele.id)
-        }
+        case ADD_DISLIKE:
+            return {
+                ...state,
+                posts: state.posts.map((post) =>
+                    post.id === action.payload
+                        ? { ...post, dislike: post.dislike + 1 }
+                        : post
+                )
+            }
+        case ADD_TODO:
+            return {
+                todos: [...state.todos, action.payload]
+            }
+        case DELETE_TODO:
+            return {
+                todos: state.todos.filter(ele => action.payload !== ele.id)
+            }
         case DONE_TODO:
-        return {
-            ...state,
-            todos: state.todos.map((todo) =>
-            todo.id === action.payload
-                    ? { ...todo, isDone: !todo.isDone}
-                    : todo
-            )
-        }
+            return {
+                ...state,
+                todos: state.todos.map((todo) =>
+                    todo.id === action.payload
+                        ? { ...todo, isDone: !todo.isDone }
+                        : todo
+                )
+            }
+        case EDIT_TODO:
+            return {
+                ...state,
+                todos: state.todos.map((todo) =>
+                    todo.id === action.payload
+                        ? { ...todo, description: action.desc }
+                        : todo
+                )
+            }
         default:
             return state
     }
-    
+
 }
 export default rootReducer
 
