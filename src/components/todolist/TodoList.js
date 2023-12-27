@@ -29,7 +29,10 @@ const TodoList = () => {
   const [change, setChange] = useState("")
 
   const [editingTodoId, setEditingTodoId] = useState(null) // New state variable
-
+const handleSave=()=>{
+  dispatch(editTodo(editingTodoId, change))
+  handleClose()
+}
   console.log(change)
 
   return (
@@ -60,7 +63,16 @@ const TodoList = () => {
               }}>
               Edit
             </Button>
-            <Modal show={show} onHide={handleClose}>
+            
+            <Button
+              variant="success"
+              onClick={() => dispatch(doneTodo(todo.id))}>
+              Done
+            </Button>
+          </Card.Body>
+        </Card>
+      ))}
+      <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Todo Editing</Modal.Title>
               </Modal.Header>
@@ -89,27 +101,18 @@ const TodoList = () => {
                   onClick={() => {
                     change === ""
                       ? alert("yabtaa chway")
-                      : dispatch(editTodo(editingTodoId, change))
-                    handleClose()
+                      : handleSave()
                   }}>
                   Save Changes
                 </Button>
               </Modal.Footer>
             </Modal>
-            <Button
-              variant="success"
-              onClick={() => dispatch(doneTodo(todo.id))}>
-              Done
-            </Button>
-          </Card.Body>
-        </Card>
-      ))}
     </div>
   )
 }
-{
+
   /* <Button onClick={()=>props.addLike(post.id)}>{post.like}</Button> */
-}
+
 
 // export default connect(mapStateToProps, mapDispatchToProps)(PostList)
 export default TodoList

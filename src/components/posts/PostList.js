@@ -36,6 +36,10 @@ const PostList = () => {
   const dispatch = useDispatch()
   const posts = useSelector((state) => state.posts)
   const [editingPostId, setEditingPostId] = useState(null)
+  const handleSave=()=>{
+    dispatch(editArticle(editingPostId, titlechange, contentchange))
+handleClose()
+  }
 
   return (
     <div>
@@ -63,7 +67,26 @@ const PostList = () => {
               }}>
               Edit
             </Button>
-            <Modal show={show} onHide={handleClose}>
+            
+            <br />
+            <img
+              src={like}
+              width="35"
+              alt="like"
+              onClick={() => dispatch(addLike(post.id))}
+            />
+            {post.like}
+            <img
+              src={dislike}
+              width="35"
+              alt="dislike"
+              onClick={() => dispatch(addDislike(post.id))}
+            />
+            {post.dislike}
+          </Card.Body>
+        </Card>
+      ))}
+      <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Post Editing</Modal.Title>
               </Modal.Header>
@@ -100,35 +123,14 @@ const PostList = () => {
                 <Button
                   variant="success"
                   onClick={() => {
-                    handleClose()
                     contentchange === "" || titlechange === ""
                       ? alert("heeeeeeeh")
-                      : dispatch(
-                          editArticle(editingPostId, titlechange, contentchange)
-                        )
+                      : handleSave()
                   }}>
                   Save Changes
                 </Button>
               </Modal.Footer>
             </Modal>
-            <br />
-            <img
-              src={like}
-              width="35"
-              alt="like"
-              onClick={() => dispatch(addLike(post.id))}
-            />
-            {post.like}
-            <img
-              src={dislike}
-              width="35"
-              alt="dislike"
-              onClick={() => dispatch(addDislike(post.id))}
-            />
-            {post.dislike}
-          </Card.Body>
-        </Card>
-      ))}
     </div>
   )
 }
